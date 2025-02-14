@@ -10,10 +10,19 @@
 <body onload="showproducts()">
    
         <h1>My Store</h1>
+        <h4 onclick="displaycart()" style="cursor: pointer;">Cart:<span id="items"></span></h4>
         <hr>
-        <h3>products</h3>
+        <div id="productbox">
+            <h3>products</h3>
         <div id="divproducts"></div>
-        <h3>my cart</h3>
-        <div id="divcart"></div>
+        </div>
+        
+        <div id="cartbox" style="display: none;">
+            <h4>My Cart</h4>
+            <div id="divcart"></div>
+            <h4>Order Value:<span id="order"></span></h3>
+                <button onclick="hidecart()">close</button>
+            </div>
+        
 </body>
 </html>

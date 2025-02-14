@@ -11,26 +11,39 @@
             {id:3,name:"p3",price:60},
         ];
 
+
+
         const cart={};
        // const obj={apple:4,mango:2};
+    
        function addtocart(id) {
   if (cart[id]) {
     cart[id] += 1; // If already in the cart, increase quantity
   } else {
     cart[id] = 1; // Add product with quantity 1 if not already in cart
   }
+  
+
+  
+  
   showcart(); // Update the cart display after adding product
 }
+
+
+
         const showcart=()=>{
+            let count=Object.keys(cart).length
+            items.innerHTML=count;
+            showtotal();
             let str=""
         products.map((value)=>{
             if(cart[value.id]){
                 let totalPrice = cart[value.id] * value.price;
-            str+=`<div>
+            str+=`<div id="cart">
             ${value.id}-${value.name}-${value.price}-
             <button onclick="decrement(${value.id})">-</button>
             ${cart[value.id]}<button onclick="increment(${value.id})">+</button> 
-            -${totalPrice}
+            -${totalPrice}- <button onclick="deletefun(${value.id})">delete</button>
             </div>`
             }
         })
@@ -40,7 +53,7 @@
         const showproducts=()=>{
              let str=""
             products.forEach((value) => {
-              str+=`<div>${value.id}-${value.name}-${value.price}-<button onclick="addtocart(${value.id})">add to cart</button></div>`
+              str+=`<div id="product">${value.id}-${value.name}-${value.price}-<button onclick="addtocart(${value.id})">Add</button></div>`
             });
          divproducts.innerHTML=str;
         };
@@ -58,9 +71,29 @@
         }
         function decrement(id) {
   if (cart[id] > 1) {
-    cart[id] -= 1; // Decrease the quantity for the specific product
+    cart[id] -= 1; // decrease the quantity for that id
   } else {
-    cart[id]=0; // If quantity reaches 1, remove from cart (or set to 0, depending on your logic)
+    cart[id]=0; // if quantity reaches 1, delete cart of that id
   }
-  showcart(); // Update the cart display after decrement
+  showcart(); // show  the cart after doing
+}
+  const deletefun=(id)=>{
+        delete cart[id];
+        showcart();
+  }
+const showtotal=()=>{
+      let total=products.reduce((sum,value)=>{
+       return sum + value.price *(cart[value.id] ? cart[value.id]:0)
+    },0)
+     order.innerHTML=total
+}
+
+const displaycart =()=>{
+    cartbox.style.display="block"
+    productbox.style.display="none"
+}
+
+const hidecart=()=>{
+     cartbox.style.display="none"
+     productbox.style.display="block"
 }
