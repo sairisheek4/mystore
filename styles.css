@@ -1,18 +1,57 @@
 body{
     margin-left: 20px;
     margin-right: 20px;
-    text-align: center;
+    /* text-align: center; */
 }
 #divproducts{
     margin-left: 20px;
     margin-right: 20px;
 }
-#product{
+/* #product{
     margin: 10px;
 }
 #cart{
     margin: 10px;
-}
+} */
 button{
     cursor: pointer;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.box{
+    width: 300px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px;
+}
+.row button{
+    background-color: green;
+    font-size: 20px;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border:none;
+    font-weight: bold;
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.menu{
+    display: flex;  
+     
+}
+
+.menu div{
+    padding: 10px;
+    font-weight: bold;
+    /* font-size: 18px; */
 }

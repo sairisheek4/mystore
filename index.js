@@ -5,11 +5,17 @@
         //     console.log(value,index,arr)
         // });
         // let scores=[32,43,22,54,P
-        const products=[
-            {id:1,name:"p1",price:40},
-            {id:2,name:"p2",price:50},
-            {id:3,name:"p3",price:60},
-        ];
+        // const products=[
+        //     {id:1,name:"p1",price:40},
+        //     {id:2,name:"p2",price:50},
+        //     {id:3,name:"p3",price:60},
+        // ];
+
+        let products = []
+
+   fetch("products.json")
+  .then((response) => response.json()) 
+  .then((data) => (showproducts(data))) 
 
 
 
@@ -50,13 +56,13 @@
         divcart.innerHTML=str
         }
 
-        const showproducts=()=>{
-             let str=""
-            products.forEach((value) => {
-              str+=`<div id="product">${value.id}-${value.name}-${value.price}-<button onclick="addtocart(${value.id})">Add</button></div>`
-            });
-         divproducts.innerHTML=str;
-        };
+        // const showproducts=()=>{
+        //      let str=""
+        //     products.forEach((value) => {
+        //       str+=`<div id="product">${value.id}-${value.name}-${value.price}-<button onclick="addtocart(${value.id})">Add</button></div>`
+        //     });
+        //  divproducts.innerHTML=str;
+        // };
 
         
         function increment(id){
@@ -97,3 +103,24 @@ const hidecart=()=>{
      cartbox.style.display="none"
      productbox.style.display="block"
 }
+
+const showproducts = (data) => {
+    products = data
+    let str = "<div class='row'>"
+    products.map((value) => {
+      str += `
+      <div class='box'> 
+      <img src='${value.url}'>
+      <h3>${value.name}</h3>
+      <p>${value.desc}</p>
+      <h4>$${value.price}</h4>
+      <button onclick='addtocart(${value.id})'>Add to Cart</button>
+      </div>
+      `;
+    });
+    divproducts.innerHTML=str+"</div>";
+  };
+
+  const displayproducts=()=>{
+    productbox.style.display="block"
+  }
